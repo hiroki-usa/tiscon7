@@ -131,10 +131,20 @@ public class EstimateController {
         UserOrderDto dto = new UserOrderDto();
         BeanUtils.copyProperties(userOrderForm, dto);
         Integer price = estimateService.getPrice(dto);
+        Integer distance = estimateService.getDistance(dto);
+        Integer truck = estimateService.getTruck(dto);
+        Double season = estimateService.getSeason(dto);
+        Integer option = estimateService.getOptional(dto);
+
 
         model.addAttribute("prefectures", estimateDAO.getAllPrefectures());
         model.addAttribute("userOrderForm", userOrderForm);
         model.addAttribute("price", price);
+        model.addAttribute("distance", distance);
+        model.addAttribute("truck", truck);
+        model.addAttribute("season", season);
+        model.addAttribute("option", option);
+
         return "result";
     }
 
