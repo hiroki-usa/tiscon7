@@ -310,3 +310,17 @@ td {
 
 .error-color{color: red;
 }
+
+.primary-text-2 {
+    margin: 64px;
+    color: #2EA9BC;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 32px;
+    font-family: "Roboto";
+}
+
+.color-change{
+    font-family: "Roboto";
+    font-style: normal;
+}

@@ -117,4 +117,57 @@ public class EstimateService {
     private int getBoxForPackage(int packageNum, PackageType type) {
         return packageNum * estimateDAO.getBoxPerPackage(type.getCode());
     }
+
+    public Integer getDistance(UserOrderDto dto) {
+        double distance = estimateDAO.getDistance(dto.getOldPrefectureId(), dto.getNewPrefectureId());
+        // 小数点以下を切り捨てる
+        int distanceInt = (int) Math.floor(distance);
+
+        // 距離当たりの料金を算出する
+        int priceForDistance = distanceInt * PRICE_PER_DISTANCE;
+
+
+        return  priceForDistance;
+    }
+    public Integer getTruck(UserOrderDto dto) {
+        double distance = estimateDAO.getDistance(dto.getOldPrefectureId(), dto.getNewPrefectureId());
+        // 小数点以下を切り捨てる
+        int distanceInt = (int) Math.floor(distance);
+
+        int boxes = getBoxForPackage(dto.getBox(), PackageType.BOX)
+                + getBoxForPackage(dto.getBed(), PackageType.BED)
+                + getBoxForPackage(dto.getBicycle(), PackageType.BICYCLE)
+                + getBoxForPackage(dto.getWashingMachine(), PackageType.WASHING_MACHINE);
+
+        // 箱に応じてトラックの種類が変わり、それに応じて料金が変わるためトラック料金を算出する。
+        int pricePerTruck = estimateDAO.getPricePerTruck(boxes);
+
+        return  pricePerTruck;
+    }
+    public Integer getOptional(UserOrderDto dto) {
+        double distance = estimateDAO.getDistance(dto.getOldPrefectureId(), dto.getNewPrefectureId());
+        // 小数点以下を切り捨てる
+        int distanceInt = (int) Math.floor(distance);
+
+        // オプションサービスの料金を算出する。
+        int priceForOptionalService = 0;
+
+        if (dto.getWashingMachineInstallation()) {
+            priceForOptionalService = estimateDAO.getPricePerOptionalService(OptionalServiceType.WASHING_MACHINE.getCode());
+        }
+        return  priceForOptionalService;
+    }
+    public Double getSeason(UserOrderDto dto) {
+
+        //引越し月のNの計算
+        String month = dto.getMovingMonth();
+        double N = 1;
+        if (month.equals("3")|| month.equals("4")){
+            N = 1.5;
+        }else if (month.equals("9")){
+            N = 1.2;
+        }
+
+        return  N;
+    }
 }
