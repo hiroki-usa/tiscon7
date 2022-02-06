@@ -17,7 +17,6 @@ public class UserOrderForm {
     private String customerName;
 
     @NotBlank
-    @Numeric
     private String tel;
 
     @Email
