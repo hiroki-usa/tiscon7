@@ -75,7 +75,7 @@
 
 
         <div class="form-group">
-          <label for="movingMonth">引越し月(3~4月:50%割増　9月:20%割増)</label>
+          <label for="movingMonth">引越し月 (3~4月:50%割増　9月:20%割増)</label>
           <select id="movingMonth" name="movingMonth" class="form-control" th:field="*{movingMonth}">
             <option th:value="1" th:text="1">1</option>
             <option th:value="2" th:text="2">2</option>
@@ -95,20 +95,21 @@
       </fieldset>
       <fieldset>
       <div class="sub-title">お荷物情報</div>
+          <label>総段ボール数200までのお見積もりをいたします 200を超える場合はお電話してください</label>
         <div class="form-group">
           <label for="box">段ボールの個数</label>
           <input type="text" id="box" name="box" th:field="*{box}" class="form-control" value="10"/>
         </div>
         <div class="form-group">
-          <label for="bed">ベッドの個数</label>
+          <label for="bed">ベッドの個数 (1つあたり段ボール20個分)</label>
           <input type="text" id="bed" name="bed" th:field="*{bed}" class="form-control" value="3"/>
         </div>
         <div class="form-group">
-          <label for="bicycle">自転車の個数</label>
+          <label for="bicycle">自転車の個数 (1つあたり段ボール15個分)</label>
           <input type="text" id="bicycle" name="bicycle" th:field="*{bicycle}" class="form-control" value="1"/>
         </div>
         <div class="form-group">
-          <label for="washingMachine">洗濯機の個数</label>
+          <label for="washingMachine">洗濯機の個数 (1つあたり段ボール10個分)</label>
           <input type="text" id="washingMachine" name="washingMachine" th:field="*{washingMachine}" class="form-control"
                  value="1"/>
         </div>

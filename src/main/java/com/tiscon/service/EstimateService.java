@@ -82,8 +82,17 @@ public class EstimateService {
                 + getBoxForPackage(dto.getBicycle(), PackageType.BICYCLE)
                 + getBoxForPackage(dto.getWashingMachine(), PackageType.WASHING_MACHINE);
 
+        //段ボール分岐
+        int b = 0;
+        if (boxes > 200){
+            b = 200;
+        } else if(boxes <= 200){
+            b = boxes;
+        }
+        int pricePerTruck = estimateDAO.getPricePerTruck(b);
+
         // 箱に応じてトラックの種類が変わり、それに応じて料金が変わるためトラック料金を算出する。
-        int pricePerTruck = estimateDAO.getPricePerTruck(boxes);
+//        int pricePerTruck = estimateDAO.getPricePerTruck(boxes);
 
         //引越し月のNの計算
         String month = dto.getMovingMonth();
